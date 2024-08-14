@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.clientes.api.model.Cliente;
 import br.com.clientes.api.repository.ClienteRepository;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
 public class Controller {
@@ -14,9 +16,14 @@ public class Controller {
     @Autowired
     private ClienteRepository acao;
 
-    @PostMapping("/")
+    @PostMapping("/cadastrar")
     public Cliente cadastrar(@RequestBody Cliente c) {
         return acao.save(c);
+    }
+
+    @GetMapping("/list")
+    public Iterable<Cliente> selecionar() {
+        return acao.findAll();
     }
 
 }
