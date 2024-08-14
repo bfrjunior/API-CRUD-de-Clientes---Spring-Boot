@@ -9,6 +9,8 @@ import br.com.clientes.api.model.Cliente;
 import br.com.clientes.api.repository.ClienteRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
 public class Controller {
@@ -24,6 +26,11 @@ public class Controller {
     @GetMapping("/list")
     public Iterable<Cliente> selecionar() {
         return acao.findAll();
+    }
+
+    @PutMapping("/editar")
+    public Cliente Editar(@RequestBody Cliente c) {
+        return acao.save(c);
     }
 
 }
