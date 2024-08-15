@@ -7,12 +7,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.clientes.api.model.Cliente;
 import br.com.clientes.api.repository.ClienteRepository;
+
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
+@CrossOrigin(origins = "*")
 public class Controller {
 
     @Autowired
@@ -31,6 +34,11 @@ public class Controller {
     @PutMapping("/editar")
     public Cliente Editar(@RequestBody Cliente c) {
         return acao.save(c);
+    }
+
+    @DeleteMapping("/{codigo}")
+    public void remover(@PathVariable long codigo) {
+        acao.deleteById(codigo);
     }
 
 }
